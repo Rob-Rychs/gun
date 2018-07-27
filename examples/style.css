@@ -5,24 +5,37 @@ html, body {
 	padding: 0;
 	font-family: 'Oxygen', 'Trebuchet MS', arial;
 	position: relative;
+  background: black;
+  color: white;
 }
 
 body {
 	font-size: 18pt;
 }
 
-div, ul, li, form, p, span, button, input, textarea {
+div, ul, ol, li, p, span, form, button, input, textarea {
   margin: 0;
   padding: 0;
   position: relative;
   overflow: hidden;
+  font-size: 1em;
+  line-height: 1.5em;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   box-sizing: border-box;
 }
 
+button, input, textarea {
+  background: white;
+  border: none;
+  color: black;
+}
+
+a {
+  color: white;
+}
+
 input, textarea {
-	border: none;
 	width: 100%;
 }
 
@@ -31,6 +44,11 @@ ul, li {
 }
 
 .model, .none { display: none }
+.hide { 
+  opacity: 0;
+  visibility: hidden;
+  transition: all 2s;
+}
 
 .page {
   width: 100%;
@@ -57,6 +75,19 @@ ul, li {
   margin-left: auto;
   margin-right: auto; 
 }
+.flush {
+  line-height: 0em;
+}
+
+.rim {
+  margin: 2%;
+}
+.gap {
+  padding: 3%;
+}
+.gully {
+  margin-bottom: 1%;
+}
 
 .sit { margin-bottom: 0; }
 .row { width: 100%; }
@@ -73,9 +104,6 @@ ul, li {
   display: inline-block;
 }
 
-.rim {
-  margin: 2%;
-}
 .loud {
   font-size: 150%;
 }
@@ -290,4 +318,15 @@ ul, li {
   50%  {color: #4D79D8;}
   75%	 {color: #33cc33;}
   100% {color: #f2b919;}
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse
+{
+  0% {opacity: 1;}
+  50% {opacity: 0.5;}
+  100% {opacity: 1;}
 }

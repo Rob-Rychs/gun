@@ -4,27 +4,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../style.css">
 	</head>
-	<body class="whitet black">
-
+	<body>
 		<div id="sign" class="hue page">
 			<style>
 				input, button {
-					font-size: 1em;
 					margin: 1em 0;
 					padding: 1em;
 				}
 				.or {
 					display: inline-block;
 					width: 15%;
-				}
-				.loading {
-				  animation: pulse 2s infinite;
-				}
-				@keyframes pulse
-				{
-				  0% {opacity: 1;}
-				  50% {opacity: 0.5;}
-				  100% {opacity: 1;}
 				}
 			</style>
 			<form id="inup" class="sign pad center">
@@ -106,7 +95,7 @@
 					</form>
 					<div>
 						<ul name="said">
-							<li name="#" class="sit sort shade rim"><div name="what" class="rim sit"></div></li>
+							<li name="#" class="sit sort shade rim"><div name="what" class="rim"></div></li>
 						</ul>
 					</div>
 				</div>
@@ -164,7 +153,7 @@
 			// for how to build a simplified version
 			// of this example: https://scrimba.com/c/c2gBgt4
 			var gun = Gun(location.origin+'/gun');
-			var app = gun.get('example/contacts/6');
+			var app = gun.get('example/contacts/7');
 			var user = gun.user();
 			var c = window.c = {};
 			(function(){
@@ -178,9 +167,9 @@
 					if(!at.put || !at.put.users){ return }
 					var no;
 					Gun.node.is(at.put.users, function(val, key){
-						Gun.SEA.read(val, false, function(val){
+						Gun.SEA.verify(val, false, function(val){
 						//Gun.SEA.read(val, false, function(val){
-							if('alias/'+key === Gun.val.rel.is(val)){ return }
+							if('~@'+key === Gun.val.link.is(val)){ return }
 							no = true;
 						})
 						if(no){ return no }
@@ -212,13 +201,13 @@
 						c.tell("Passphrase needs to be longer than 9 characters.");
 						return;
 					}
-					but.addClass('loading');
+					but.addClass('pulse');
 					data.alias = data.alias.toLowerCase();
 					user.create(data.alias, data.pass, function(ack){
-						if(!ack.wait){ but.removeClass('loading') }
+						if(!ack.wait){ but.removeClass('pulse') }
 						if(ack.err){ c.tell(ack.err); return }
 						if(ack.pub){
-							gun.get('users').get(data.alias).put(gun.get('alias/'+data.alias));
+							gun.get('users').get(data.alias).put(gun.get('~@'+data.alias));
 						}
 						session(data);
 						user.auth(data.alias, data.pass);
@@ -237,10 +226,10 @@
 						return;
 					}
 					var but = form.find('button:first');
-					but.addClass('loading');
+					but.addClass('pulse');
 					data.alias = data.alias.toLowerCase();
 					user.auth(data.alias, data.pass, function(ack){
-						if(!ack.wait){ but.removeClass('loading') }
+						if(!ack.wait){ but.removeClass('pulse') }
 						if(ack.err){ c.tell(ack.err); return }
 						session(data);
 					});
@@ -287,7 +276,7 @@
 				if(!user.is){ return as.route('sign') }
 				var pub = location.hash.split('/').slice(-1)[0];
 				(pub === user._.pub? $('#say').show() : $('#say').hide());
-				as('#person', window.PUB = gun.get('pub/'+pub));
+				as('#person', window.PUB = gun.get('~'+pub));
 			});
 
 
